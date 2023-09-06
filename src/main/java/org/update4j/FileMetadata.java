@@ -534,7 +534,7 @@ public class FileMetadata {
 
         private PlaceholderMatchType matcher;
 
-        private Reference(Path source) {
+        protected Reference(Path source) {
             this.source = source;
 
             addExports = new ArrayList<>();
@@ -927,6 +927,32 @@ public class FileMetadata {
             }
         }
 
+    }
+
+    public static class DbReference extends Reference {
+        private long size;
+        private long checksum;
+        private DbReference() {
+            super(null);
+        }
+
+        public void setSize(long size) {
+            this.size = size;
+        }
+
+        public void setChecksum(long checksum) {
+            this.checksum = checksum;
+        }
+
+        @Override
+        public long getSize() throws IOException {
+            return this.size;
+        }
+
+        @Override
+        public long getChecksum() throws IOException {
+            return this.checksum;
+        }
     }
 
     static Builder builder() {
