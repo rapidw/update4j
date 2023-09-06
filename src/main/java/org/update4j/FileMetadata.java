@@ -932,7 +932,7 @@ public class FileMetadata {
     public static class DbReference extends Reference {
         private long size;
         private long checksum;
-        private DbReference() {
+        public DbReference() {
             super(null);
         }
 
